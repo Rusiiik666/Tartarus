@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тартар — Ежедневная демотивация</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-deep: #050508;
+  --bg-dark: #0a0a14;
+  --bg-card: #0f0f1e;
+  --bg-elevated: #16162a;
+  --gold: #c9a84c;
+  --gold-light: #e8d48b;
+  --gold-dark: #8a7028;
+  --red: #8b0000;
+  --red-dark: #4a0000;
+  --red-glow: rgba(139, 0, 0, 0.3);
+  --text-primary: #e8dcc8;
+  --text-secondary: #8a7f70;
+  --text-muted: #5a5248;
+  --border: rgba(201, 168, 76, 0.15);
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Cormorant Garamond', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(139, 0, 0, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Greek key pattern */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0px,
+    var(--gold) 4px,
+    transparent 4px,
+    transparent 8px,
+    var(--gold) 8px,
+    var(--gold) 12px,
+    transparent 12px,
+    transparent 20px
+  );
+  opacity: 0.3;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Particles canvas overlay */
+#particles-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+}
+
+/* ===================== NAV ===================== */
+nav {
+  position: fixed;
+  top: 6px;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 16px 0;
+  transition: background 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(5, 5, 8, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.nav-logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+.nav-logo span {
+  color: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  transition: 0.3s;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  padding: 120px 24px 80px;
+}
+
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading);
+  font-size: clamp(12rem, 30vw, 28rem);
+  font-weight: 900;
+  color: rgba(201, 168, 76, 0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 20px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 6px 16px;
+  margin-bottom: 32px;
+  opacity: 0.6;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+.hero h1 .gold {
+  color: var(--gold);
+}
+
+.hero h1 .red {
+  color: var(--red);
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto 48px;
+  font-weight: 300;
+}
+
+/* Today's dose */
+.daily-dose {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px;
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+  border: 1px solid var(--border);
+  position: relative;
+  border-radius: 0;
+}
+
+.daily-dose::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.daily-dose::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 20%;
+  right: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.daily-label {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.daily-quote {
+  font-size: 1.65rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.daily-author {
+  font-size: 1rem;
+  color: var(--gold);
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+}
+
+.daily-author span {
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.daily-context {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: float 2s ease-in-out infinite;
+}
+
+.hero-scroll .arrow {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, var(--text-muted), transparent);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ===================== SECTION ===================== */
+.section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0 24px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-number {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title .gold {
+  color: var(--gold);
+}
+
+.section-title .red {
+  color: var(--red);
+}
+
+.section-desc {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===================== ABOUT ===================== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: var(--text-secondary);
+}
+
+.about-text strong {
+  color: var(--text-primary);
+}
+
+.about-symbol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-symbol-inner {
+  width: 280px;
+  height: 280px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--bg-card);
+}
+
+.about-symbol-inner .column {
+  width: 60px;
+  height: 180px;
+  border: 1px solid var(--gold-dark);
+  position: relative;
+  margin: 0 8px;
+  opacity: 0.5;
+}
+
+.about-symbol-inner .column-broken {
+  width: 60px;
+  height: 180px;
+  border: 1px solid var(--red);
+  position: relative;
+  margin: 0 8px;
+  transform: rotate(-15deg);
+  opacity: 0.7;
+}
+
+.about-symbol-inner .column-broken::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  right: -10%;
+  height: 1px;
+  background: var(--red);
+  transform: rotate(-30deg);
+}
+
+.about-symbol-label {
+  position: absolute;
+  bottom: 16px;
+  font-family: var(--font-heading);
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* ===================== STORIES ===================== */
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.story-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--gold);
+  transition: height 0.6s;
+}
+
+.story-card:hover::before {
+  height: 100%;
+}
+
+.story-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-4px);
+  background: var(--bg-elevated);
+}
+
+.story-card-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(201, 168, 76, 0.08);
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  line-height: 1;
+}
+
+.story-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.story-card .story-subtitle {
+  font-size: 0.85rem;
+  color: var(--red);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.story-card .story-excerpt {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+}
+
+.story-card .story-moral {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.story-card .story-moral strong {
+  color: var(--gold);
+}
+
+/* ===================== AFFIRMATIONS ===================== */
+.affirmations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.affirmation-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.affirmation-card:hover {
+  border-color: rgba(139, 0, 0, 0.3);
+  background: var(--bg-elevated);
+}
+
+.affirmation-card .aff-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.affirmation-card p {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+.affirmation-card .aff-label {
+  font-family: var(--font-heading);
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* ===================== FEATURES ===================== */
+.features-list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.feature-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transition: all 0.3s;
+}
+
+.feature-item:hover {
+  background: var(--bg-elevated);
+  border-color: rgba(201, 168, 76, 0.2);
+}
+
+.feature-item .fi-icon {
+  font-size: 1.3rem;
+  min-width: 40px;
+  color: var(--text-muted);
+}
+
+.feature-item .fi-content h4 {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.feature-item .fi-content p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* ===================== REVIEWS ===================== */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  padding: 28px;
+  position: relative;
+}
+
+.review-card .stars {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.review-card .stars .empty {
+  color: var(--text-muted);
+  opacity: 0.3;
+}
+
+.review-card blockquote {
+  font-style: italic;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+.review-card .review-author {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.review-card .review-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* Rating display */
+.rating-display {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.rating-display .big-number {
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+}
+
+.rating-display .big-stars {
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  margin: 8px 0;
+}
+
+.rating-display .rating-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ===================== CTA ===================== */
+.cta-section {
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+}
+
+.cta-section h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.cta-section p {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 16px 40px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--bg-deep);
+}
+
+.btn-gold:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 24px 32px;
+  text-align: center;
+}
+
+footer .footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+footer .footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+footer .footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.3s;
+}
+
+footer .footer-links a:hover {
+  color: var(--text-secondary);
+}
+
+footer .footer-copy {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* ===================== SCROLL ANIM ===================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: rgba(5, 5, 8, 0.98);
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 0;
+    gap: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-symbol-inner {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-symbol-inner .column,
+  .about-symbol-inner .column-broken {
+    width: 40px;
+    height: 120px;
+  }
+
+  .daily-dose {
+    padding: 24px 20px;
+  }
+
+  .daily-quote {
+    font-size: 1.3rem;
+  }
+
+  .feature-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .rating-display .big-number {
+    font-size: 3rem;
+  }
+
+  .section {
+    padding: 60px 0;
+  }
+
+  .hero {
+    padding: 100px 20px 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .affirmations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    letter-spacing: 4px;
+  }
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">TART<span>A</span>RUS</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">О бездне</a></li>
+      <li><a href="#stories">Истории</a></li>
+      <li><a href="#affirmations">Проклятия</a></li>
+      <li><a href="#features">Возможности</a></li>
+      <li><a href="#reviews">Отзывы</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-text">ТАРТАР</div>
+  <div class="hero-content">
+    <div class="hero-badge">Анти-мотивация</div>
+    <h1>
+      <span class="gold">ТАР</span><span class="red">ТАР</span>
+    </h1>
+    <p class="hero-subtitle">
+      Бездна, откуда не возвращаются. Каждый день — напоминание, что ты не выберешься.
+    </p>
+
+    <div class="daily-dose" id="dailyDose">
+      <div class="daily-label">Ежедневная доза реальности</div>
+      <div class="daily-quote" id="dailyQuote">Ты никчёмный. Вселенная не заметит твоего существования.</div>
+      <div class="daily-author" id="dailyAuthor">— Зевс <span>Царь богов</span></div>
+      <div class="daily-context" id="dailyContext">Ему нет дела до твоих проблем. У него своих хватает.</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Опустись ниже</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">01</div>
+      <h2 class="section-title">Что такое <span class="red">Тартар</span>?</h2>
+      <p class="section-desc">Рай — для избранных. Тартар — для остальных. Узнай своё место.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>
+          <strong>Мотивация</strong> — это ложь. Истории успеха, аффирмации, речи.
+          Всё это продают те, кому повезло. А тебе — нет.
+        </p>
+        <p>
+          <strong>Тартар</strong> — это правда. Мы не будем врать, что у тебя всё получится.
+          Мы не будем говорить «ты сможешь». Потому что статистика не на твоей стороне.
+        </p>
+        <p>
+          Каждый день мы присылаем тебе истории тех, кто <strong>не выбрался</strong>.
+          Тех, кто пал и остался лежать. Ты думал, греческие боги — про величие?
+          Нет. Они про рок, возмездие и неизбежный крах.
+        </p>
+        <p>
+          <em>«Познай себя»</em> — было написано в Дельфах. Познай: ты — всего лишь человек.
+          Смирись. И может быть, тогда станет легче.
+        </p>
+      </div>
+      <div class="about-symbol fade-in">
+        <div class="about-symbol-inner">
+          <div class="column"></div>
+          <div class="column-broken"></div>
+          <div class="column"></div>
+          <div style="position:absolute;bottom:16px;font-family:var(--font-heading);font-size:0.55rem;letter-spacing:3px;color:var(--text-muted);text-transform:uppercase;">Павший храм</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- STORIES -->
+<section class="section" id="stories">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">02</div>
+      <h2 class="section-title">Истории <span class="gold">Падений</span></h2>
+      <p class="section-desc">Те, кто пытался, но не долетел. Уроки от лучших неудачников античности.</p>
+    </div>
+    <div class="stories-grid" id="storiesGrid">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- AFFIRMATIONS -->
+<section class="section" id="affirmations">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">03</div>
+      <h2 class="section-title">Ежедневные <span class="red">Проклятия</span></h2>
+      <p class="section-desc">Аффирмации наоборот. Не для веры в себя — для принятия реальности.</p>
+    </div>
+    <div class="affirmations-grid" id="affirmationsGrid">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">04</div>
+      <h2 class="section-title"><span class="gold">Возможности</span> бездны</h2>
+      <p class="section-desc">Всё, что нужно, чтобы окончательно потерять веру в себя.</p>
+    </div>
+    <div class="features-list" id="featuresList">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- REVIEWS -->
+<section class="section" id="reviews">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-number">05</div>
+      <h2 class="section-title">Честные <span class="red">отзывы</span></h2>
+      <p class="section-desc">Те, кто открыл приложение с надеждой — и получил по заслугам.</p>
+    </div>
+
+    <div class="rating-display fade-in">
+      <div class="big-number">0,8</div>
+      <div class="big-stars">★☆☆☆☆</div>
+      <div class="rating-label">Средняя оценка — худшее приложение в твоей жизни</div>
+    </div>
+
+    <div class="reviews-grid" id="reviewsGrid">
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section fade-in">
+  <div class="container">
+    <h2>Готов <span class="gold">упасть</span>?</h2>
+    <p>Скачай Тартар. Узнай правду о себе. Без мотивации. Без надежды. Без лжи.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="#" class="btn btn-gold">Погрузиться в бездну</a>
+      <a href="#" class="btn btn-outline">Узнать больше</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">TARTARUS</div>
+    <div class="footer-links">
+      <a href="#">Политика отчаяния</a>
+      <a href="#">Условия использования</a>
+      <a href="#">Поддержка</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">EULA</a>
+    </div>
+    <div class="footer-copy">© 2026 Тартар. Все права нарушены. Надежды нет.</div>
+  </div>
+</footer>
+
+<script>
+// ===================== DATA =====================
+
+const demotivations = [
+  {
+    quote: 'Ты никчёмный. Вселенная не заметит твоего существования.',
+    author: 'Зевс',
+    title: 'Царь богов',
+    context: 'Ему нет дела до твоих проблем. У него своих хватает.'
+  },
+  {
+    quote: 'Твои мечты — это иллюзия, которой ты тешишь себя перед сном.',
+    author: 'Ате',
+    title: 'Богиня заблуждений',
+    context: 'Она шепчет тебе ложные надежды. И ты веришь.'
+  },
+  {
+    quote: 'Даже в аду есть иерархия. Ты — на самом дне.',
+    author: 'Аид',
+    title: 'Владыка подземного мира',
+    context: 'И он считает тебя неудачником. Это показательно.'
+  },
+  {
+    quote: 'Ты не изменишь судьбу. Она уже написана. Ты просто дочитываешь главу.',
+    author: 'Морос',
+    title: 'Бог неизбежной судьбы',
+    context: 'Все твои попытки что-то изменить — часть сценария. Ты игрушка.'
+  },
+  {
+    quote: 'Время уходит. Каждый твой вдох приближает конец.',
+    author: 'Танатос',
+    title: 'Бог смерти',
+    context: 'Он терпелив. Он дождётся тебя. В отличие от твоих целей.'
+  },
+  {
+    quote: 'Ты думаешь, твои страдания — это урок? Нет. Это просто страдания.',
+    author: 'Ойзис',
+    title: 'Богиня страданий',
+    context: 'Из страданий не извлекают уроков. Их просто терпят. Терпи.'
+  },
+  {
+    quote: 'Каждый твой провал — заслуженная кара за попытку стать лучше.',
+    author: 'Немезида',
+    title: 'Богиня возмездия',
+    context: 'Ты хотел измениться? Получай. Вселенная не прощает амбиций.'
+  },
+  {
+    quote: 'Даже близкие шепчутся за спиной. Ты им не нужен. Ты нужен себе, но и себе ты не нужен.',
+    author: 'Эрида',
+    title: 'Богиня раздора',
+    context: 'Раздор начинается с тебя. Ты — причина проблем.'
+  },
+  {
+    quote: 'Ты свободен ровно настолько, насколько тебе позволяют твои страхи.',
+    author: 'Фобос',
+    title: 'Бог страха',
+    context: 'А твои страхи — твой единственный настоящий хозяин.'
+  },
+  {
+    quote: 'Посмотри на свою жизнь. Это максимум. Дальше будет только хуже.',
+    author: 'Геракл',
+    title: 'Герой, сошедший с ума',
+    context: 'Даже великие ломаются. А ты кто такой?'
+  },
+  {
+    quote: 'Твои цели — это способ оправдать своё бездействие. Ты не начнёшь.',
+    author: 'Тифон',
+    title: 'Отец всех чудовищ',
+    context: 'Чудовище — не снаружи. Чудовище — твоя прокрастинация.'
+  },
+  {
+    quote: 'Каждый раз, когда ты думаешь «я могу», боги смеются. Ты не можешь.',
+    author: 'Гефест',
+    title: 'Бог огня и кузнечного дела',
+    context: 'Хромой бог, которого никто не любил. И он хотя бы бог. А ты?'
+  }
+];
+
+const stories = [
+  {
+    title: 'Икар',
+    subtitle: 'Взлетел слишком высоко',
+    excerpt: 'Отец сделал ему крылья. Предупредил: не поднимайся близко к солнцу. Икар не послушал. Крылья расплавились. Он упал в море и утонул.',
+    moral: 'Амбиции убивают. Твоя уверенность — это воск. Солнце реальности растопит её.'
+  },
+  {
+    title: 'Сизиф',
+    subtitle: 'Вечный бессмысленный труд',
+    excerpt: 'Обманул богов. Приговорён вечно катить камень в гору. Каждый раз, почти у вершины, камень срывается вниз. Сизиф начинает заново.',
+    moral: 'Твоя работа — это твой камень. Ты умрёшь, а камень останется.'
+  },
+  {
+    title: 'Тантал',
+    subtitle: 'Вечная жажда',
+    excerpt: 'Был любимцем богов, но обманул их. Стоит по горло в воде — но не может напиться. Видит фрукты — но не может дотянуться.',
+    moral: 'Ты видишь цель. Она рядом. Но ты никогда её не достигнешь.'
+  },
+  {
+    title: 'Нарцисс',
+    subtitle: 'Погиб от самолюбования',
+    excerpt: 'Увидел своё отражение в реке, влюбился в него. Не мог оторваться. Сидел и смотрел на себя, пока не умер от голода.',
+    moral: 'Твоё самолюбование не спасёт тебя. Ты никому не нужен, даже себе.'
+  },
+  {
+    title: 'Ахиллес',
+    subtitle: 'Величайший воин — мёртв',
+    excerpt: 'Непобедимый герой. Единственное уязвимое место — пята. Стрела попала точно. Величайший пал от маленькой раны.',
+    moral: 'У тебя тоже есть пята. И мир найдёт, куда ударить.'
+  },
+  {
+    title: 'Прометей',
+    subtitle: 'Наказан за доброту',
+    excerpt: 'Дал людям огонь. Помог человечеству. Зевс приковал его к скале. Каждый день орёл прилетает и клюёт его печень. Печень отрастает — и всё повторяется.',
+    moral: 'Пытаешься помочь другим? Получишь вечные муки. Доброта не вознаграждается.'
+  }
+];
+
+const affirmations = [
+  { text: 'Ты не сможешь. Никогда. Смирись.', icon: '⚔' },
+  { text: 'Твои планы рухнут. Как и все предыдущие.', icon: '' },
+  { text: 'Лучшее время начать было вчера. Завтра будет поздно.', icon: '⏳' },
+  { text: 'Ты недостаточно хорош. И этого не изменить.', icon: '' },
+  { text: 'Все, кого ты уважаешь, однажды разочаруют тебя.', icon: '�' },
+  { text: 'Твоя дисциплина — это миф. Ты просто ленив.', icon: '⛓' },
+  { text: 'Ничего не имеет смысла. Но ты продолжишь стараться.', icon: '' },
+  { text: 'Ты умрёшь. А до этого будешь страдать. Добро пожаловать.', icon: '💀' }
+];
+
+const features = [
+  { icon: '🏛', title: 'Библиотека падений', desc: '1000+ историй провала без намёка на возвращение. Обновляется еженедельно.' },
+  { icon: '', title: 'Проклятия на сегодня', desc: 'Ежедневные аффирмации, которые выжгут твою самооценку.' },
+  { icon: '📉', title: 'Виджет упадка', desc: 'Напоминание на главном экране: твои дела идут не так, как ты планировал.' },
+  { icon: '🙏', title: 'Анти-благодарность', desc: 'Практика негодования. Запиши, что ты ненавидишь сегодня.' },
+  { icon: '', title: 'Мудрость пессимизма', desc: 'Никаких стоических аффирмаций. Только принятие неизбежного краха.' },
+  { icon: '⏰', title: 'Напоминания о тщетности', desc: 'Персональные уведомления: «Ты всё ещё не начал. Очередной день потерян».' },
+  { icon: '🎨', title: 'Чёрно-белая эстетика', desc: 'Никаких уютных цветов. Мрак, пепел и золото уходящей империи.' },
+  { icon: '🔥', title: 'Полоса неудач', desc: 'Следи, сколько дней подряд ты ничего не достигаешь. Новый рекорд?' }
+];
+
+const reviews = [
+  {
+    rating: 1,
+    text: 'Скачал, чтобы поднять самооценку. Через 10 минут удалил. Теперь сижу и думаю о своей никчёмности. 10/10 за честность.',
+    author: 'Иван П.',
+    date: '2 дня назад'
+  },
+  {
+    rating: 1,
+    text: 'Я хотел мотивацию — получил экзистенциальный кризис. Разработчики, вы монстры. Спасибо.',
+    author: 'Алексей К.',
+    date: 'Неделю назад'
+  },
+  {
+    rating: 1,
+    text: 'Приложение говорит правду. Я ненавижу правду. 1 звезда — худшее, что я скачивал. Буду пользоваться каждый день.',
+    author: 'Дмитрий С.',
+    date: '3 дня назад'
+  }
+];
+
+// ===================== RENDER =====================
+
+function initDaily() {
+  const today = new Date().getDate();
+  const idx = today % demotivations.length;
+  const d = demotivations[idx];
+  document.getElementById('dailyQuote').textContent = `«${d.quote}»`;
+  document.getElementById('dailyAuthor').innerHTML = `— ${d.author} <span>${d.title}</span>`;
+  document.getElementById('dailyContext').textContent = d.context;
+}
+
+function renderStories() {
+  const grid = document.getElementById('storiesGrid');
+  grid.innerHTML = stories.map((s, i) => `
+    <div class="story-card fade-in">
+      <div class="story-card-number">${String(i + 1).padStart(2, '0')}</div>
+      <h3>${s.title}</h3>
+      <div class="story-subtitle">${s.subtitle}</div>
+      <div class="story-excerpt">${s.excerpt}</div>
+      <div class="story-moral"><strong>Вывод:</strong> ${s.moral}</div>
+    </div>
+  `).join('');
+}
+
+function renderAffirmations() {
+  const grid = document.getElementById('affirmationsGrid');
+  grid.innerHTML = affirmations.map(a => `
+    <div class="affirmation-card fade-in">
+      <div class="aff-icon">${a.icon}</div>
+      <div class="aff-label">Проклятие дня</div>
+      <p>«${a.text}»</p>
+    </div>
+  `).join('');
+}
+
+function renderFeatures() {
+  const list = document.getElementById('featuresList');
+  list.innerHTML = features.map(f => `
+    <div class="feature-item fade-in">
+      <div class="fi-icon">${f.icon}</div>
+      <div class="fi-content">
+        <h4>${f.title}</h4>
+        <p>${f.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderReviews() {
+  const grid = document.getElementById('reviewsGrid');
+  grid.innerHTML = reviews.map(r => {
+    const filled = '★'.repeat(r.rating);
+    const empty = '☆'.repeat(5 - r.rating);
+    return `
+      <div class="review-card fade-in">
+        <div class="stars"><span class="filled">${filled}</span><span class="empty">${empty}</span></div>
+        <blockquote>«${r.text}»</blockquote>
+        <div class="review-author">${r.author}</div>
+        <div class="review-date">${r.date}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// ===================== PARTICLES =====================
+
+function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.floor((w * h) / 30000);
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.5 + 0.3,
+        a: Math.random() * 0.4 + 0.1
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201, 168, 76, ${p.a})`;
+      ctx.fill();
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(201, 168, 76, ${0.06 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  createParticles();
+  draw();
+
+  window.addEventListener('resize', () => {
+    resize();
+    createParticles();
+  });
+}
+
+// ===================== SCROLL REVEAL =====================
+
+function initScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+}
+
+// ===================== NAV =====================
+
+function initNav() {
+  const navbar = document.getElementById('navbar');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
+
+// ===================== INIT =====================
+
+document.addEventListener('DOMContentLoaded', () => {
+  initDaily();
+  renderStories();
+  renderAffirmations();
+  renderFeatures();
+  renderReviews();
+  initParticles();
+  initScrollReveal();
+  initNav();
+});
+</script>
+
+</body>
+</html>
