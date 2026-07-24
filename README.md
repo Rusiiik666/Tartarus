@@ -11,3 +11,5 @@ Built for those tired of fake positivity. For the ones who know life isn't a her
 Greek gods aesthetics. Dark theme. Zero hope. Maximum style.
 
 Tartarus. The abyss is waiting.
+
+Try [Tartarus](https://rusiiik666.github.io/Tartarus/tartarus.html)
